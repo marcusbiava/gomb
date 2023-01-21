@@ -9,7 +9,7 @@ import (
 
 func WriteFile[T any](path string, slice []T) {
 	s := slices.SliceToStringWithoutBracket(slice)
-	err := os.WriteFile(path, []byte(s), 0666)
+	err := os.WriteFile(path, []byte(s), os.ModePerm)
 	errors.IfAnErrorOccursCallsLogFatal(err, "WriteFile: "+path)
 }
 
