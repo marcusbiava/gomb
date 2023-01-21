@@ -20,3 +20,14 @@ func ReadFile(path string) []string {
 	split := strings.Split(s, ",")
 	return split
 }
+
+func OpenFileOrCreate(path string) *os.File {
+	file, err := os.OpenFile(path, os.O_RDWR|os.O_CREATE, os.ModePerm)
+	errors.IfAnErrorOccursCallsLogFatal(err, "OpenFileOrCreate")
+	return file
+}
+
+func RemoveFile(fileName string) {
+	err := os.Remove(fileName)
+	errors.IfAnErrorOccursCallsLogFatal(err, "Remove")
+}

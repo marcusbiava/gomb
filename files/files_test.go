@@ -3,7 +3,6 @@ package files
 import (
 	"github.com/marcusbiava/gomb/errors"
 	"github.com/stretchr/testify/assert"
-	"os"
 	"testing"
 )
 
@@ -17,6 +16,19 @@ func TestWriteFile(t *testing.T) {
 
 	assert.Equal(t, 4, len(slice))
 
-	err := os.Remove(fileName)
-	errors.IfAnErrorOccursCallsLogFatal(err, "Rremove")
+	RemoveFile(fileName)
+}
+
+func TestOpenFileOrCreateFile(t *testing.T) {
+	fileName := "file1"
+	file := OpenFileOrCreate(fileName)
+	stat, err := file.Stat()
+	errors.IfAnErrorOccursCallsLogFatal(err, "Stat")
+
+	assert.Equal(t, fileName, stat.Name())
+
+	err = file.Close()
+	errors.IfAnErrorOccursCallsLogFatal(err, "Close file")
+
+	RemoveFile(fileName)
 }
