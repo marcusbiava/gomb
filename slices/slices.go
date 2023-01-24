@@ -11,3 +11,10 @@ func SliceToStringWithoutBracket[T any](slice []T) string {
 	join := strings.Join(split, ",")
 	return fmt.Sprintf("%v", join)
 }
+
+func Map[T any, R any](slice []T, mapper func(value T, index int, slice []T) R) (mapped []R) {
+	for i, el := range slice {
+		mapped = append(mapped, mapper(el, i, slice))
+	}
+	return mapped
+}
