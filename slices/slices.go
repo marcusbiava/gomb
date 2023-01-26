@@ -18,3 +18,16 @@ func Map[T any, R any](slice []T, mapper func(value T, index int, slice []T) R) 
 	}
 	return mapped
 }
+
+func Chunk[T any](input []T, size int) [][]T {
+	var chunks [][]T
+
+	for i := 0; i < len(input); i += size {
+		end := i + size
+		if end > len(input) {
+			end = len(input)
+		}
+		chunks = append(chunks, input[i:end])
+	}
+	return chunks
+}

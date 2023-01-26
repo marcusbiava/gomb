@@ -22,3 +22,10 @@ func TestMap(t *testing.T) {
 	})
 	assert.Equal(t, expectedResult, actualResult)
 }
+
+func TestChunkSlice(t *testing.T) {
+	numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	assert.Equal(t, [][]int{{1, 2}, {3, 4}, {5, 6}, {7, 8}, {9, 10}}, Chunk(numbers, 2))
+	assert.Equal(t, [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10}}, Chunk(numbers, 3))
+}
