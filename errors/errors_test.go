@@ -21,3 +21,17 @@ func TestIfAnErrorOccursCallsLogFatal(t *testing.T) {
 
 	assert.Equal(t, true, ok)
 }
+
+func TestIfAnErrorOccursCallsLogPrintln(t *testing.T) {
+	var ok bool
+
+	logPrintf = func(format string, v ...any) {
+		pc, _, _, _ := runtime.Caller(1)
+		fmt.Println(runtime.FuncForPC(pc).Name())
+		ok = true
+	}
+
+	IfAnErrorOccursCallsLogPrint(errors.New("error occurs"), "errors here")
+
+	assert.Equal(t, true, ok)
+}
