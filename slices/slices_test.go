@@ -29,3 +29,11 @@ func TestChunkSlice(t *testing.T) {
 	assert.Equal(t, [][]int{{1, 2}, {3, 4}, {5, 6}, {7, 8}, {9, 10}}, Chunk(numbers, 2))
 	assert.Equal(t, [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10}}, Chunk(numbers, 3))
 }
+
+func TestFilter(t *testing.T) {
+	numbers := []string{"1", "2", "", "3", ""}
+	assert.Equal(t, []string{"1", "2", "3"}, Filter(numbers, func(value string, index int, slice []string) bool {
+		return value != ""
+	}))
+
+}

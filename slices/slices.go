@@ -31,3 +31,12 @@ func Chunk[T any](input []T, size int) [][]T {
 	}
 	return chunks
 }
+
+func Filter[T any](slice []T, predicate func(value T, index int, slice []T) bool) (filtered []T) {
+	for i, el := range slice {
+		if ok := predicate(el, i, slice); ok {
+			filtered = append(filtered, el)
+		}
+	}
+	return filtered
+}
