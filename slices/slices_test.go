@@ -12,6 +12,9 @@ func TestSliceToStringWithoutBracket(t *testing.T) {
 
 	actualResult = SliceToStringWithoutBracket([]string{"1", "3", "4"})
 	assert.Equal(t, "1,3,4", actualResult)
+
+	actualResult = SliceToStringWithoutBracket([]string{"A 1", "B 1", "C 1"})
+	assert.Equal(t, "A 1,B 1,C 1", actualResult)
 }
 
 func TestMap(t *testing.T) {

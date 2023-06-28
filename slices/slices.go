@@ -6,10 +6,11 @@ import (
 )
 
 func SliceToStringWithoutBracket[T any](slice []T) string {
-	temp := fmt.Sprintf("%v", slice)
-	split := strings.Split(temp[1:len(temp)-1], " ")
-	join := strings.Join(split, ",")
-	return fmt.Sprintf("%v", join)
+	strSlice := make([]string, len(slice))
+	for i, value := range slice {
+		strSlice[i] = fmt.Sprintf("%v", value)
+	}
+	return strings.Join(strSlice, ",")
 }
 
 func Map[T any, R any](slice []T, mapper func(value T, index int, slice []T) R) (mapped []R) {
