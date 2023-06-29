@@ -25,3 +25,7 @@ func IfAnErrorOccursCallsLogPrint(err error, message string) {
 		logPrintf("\n### \nERROR: %s \n%s %v \n###", nameOfTheFunction, message, err)
 	}
 }
+
+func IfAnErrorOccursIgnore(err error) {
+	_ = err
+}
