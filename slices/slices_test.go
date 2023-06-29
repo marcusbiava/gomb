@@ -33,6 +33,14 @@ func TestChunkSlice(t *testing.T) {
 	assert.Equal(t, [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10}}, Chunk(numbers, 3))
 }
 
+func TestDifference(t *testing.T) {
+	n1 := []int{1, 2, 3, 4, 10}
+	n2 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100}
+
+	assert.Equal(t, []int{5, 6, 7, 8, 9, 100}, Difference(n1, n2))
+	assert.Equal(t, []int{5, 6, 7, 8, 9, 100}, Difference(n2, n1))
+}
+
 func TestFilter(t *testing.T) {
 	numbers := []string{"1", "2", "", "3", ""}
 	assert.Equal(t, []string{"1", "2", "3"}, Filter(numbers, func(value string, index int, slice []string) bool {
