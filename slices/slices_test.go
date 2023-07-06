@@ -48,3 +48,18 @@ func TestFilter(t *testing.T) {
 	}))
 
 }
+
+func TestContains(t *testing.T) {
+	numbers := []string{"1", "2", "", "3", ""}
+	r := Contains(numbers, func(value string, index int, slice []string) bool {
+		return value == "2"
+	})
+
+	assert.Equal(t, r, true)
+
+	r = Contains(numbers, func(value string, index int, slice []string) bool {
+		return value == "23"
+	})
+
+	assert.Equal(t, r, false)
+}
