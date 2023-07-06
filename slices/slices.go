@@ -68,3 +68,12 @@ func Difference[T comparable](slices ...[]T) []T {
 
 	return differentElements
 }
+
+func Contains[T any](slice []T, predicate func(value T, index int, slice []T) bool) bool {
+	for i, el := range slice {
+		if ok := predicate(el, i, slice); ok {
+			return true
+		}
+	}
+	return false
+}
