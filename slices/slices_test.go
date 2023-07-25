@@ -17,6 +17,17 @@ func TestSliceToStringWithoutBracket(t *testing.T) {
 	assert.Equal(t, "A 1,B 1,C 1", actualResult)
 }
 
+func TestSliceToStringWithoutBracketSeparator(t *testing.T) {
+	actualResult := SliceToStringWithoutBracketSeparator([]int{1, 3, 4}, "\t")
+	assert.Equal(t, "1\t3\t4", actualResult)
+
+	actualResult = SliceToStringWithoutBracketSeparator([]string{"1", "3", "4"}, ";")
+	assert.Equal(t, "1;3;4", actualResult)
+
+	actualResult = SliceToStringWithoutBracketSeparator([]string{"A 1", "B 1", "C 1"}, "\t\t")
+	assert.Equal(t, "A 1\t\tB 1\t\tC 1", actualResult)
+}
+
 func TestMap(t *testing.T) {
 	var numerals = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 	expectedResult := []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
