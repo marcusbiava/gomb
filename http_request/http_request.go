@@ -6,12 +6,15 @@ import (
 	"github.com/marcusbiava/gomb/errors"
 	"io"
 	"net/http"
+	"time"
 )
 
 // HttpRequest makes an HTTP request using the specified method, URL, and headers.
 // It returns the response body as a byte slice and the response status code.
 func HttpRequest(method, url string, headers map[string]string) ([]byte, int, error) {
-	client := &http.Client{}
+	client := &http.Client{
+		Timeout: 20 * time.Second,
+	}
 
 	req, err := http.NewRequest(method, url, nil)
 	errors.IfAnErrorOccursCallsLogFatal(err, fmt.Sprintf("http.NewRequest(%s, %s)", method, url))
